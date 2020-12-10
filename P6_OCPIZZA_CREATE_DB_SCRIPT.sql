@@ -9,8 +9,6 @@ create table utilisateur
     mot_de_passe   varchar(30) not null
 );
 
-alter table utilisateur
-    owner to yannickdriever;
 
 create table client
 (
@@ -24,8 +22,6 @@ create table client
             references utilisateur
 );
 
-alter table client
-    owner to yannickdriever;
 
 create table facture
 (
@@ -41,8 +37,6 @@ create table facture
             references client
 );
 
-alter table facture
-    owner to yannickdriever;
 
 create table point_de_vente
 (
@@ -56,8 +50,6 @@ create table point_de_vente
     gerant            varchar(30)  not null
 );
 
-alter table point_de_vente
-    owner to yannickdriever;
 
 create table stock
 (
@@ -74,8 +66,6 @@ create table stock
             references point_de_vente
 );
 
-alter table stock
-    owner to yannickdriever;
 
 create table produit
 (
@@ -92,8 +82,6 @@ create table produit
             references stock
 );
 
-alter table produit
-    owner to yannickdriever;
 
 create table personnel
 (
@@ -110,8 +98,6 @@ create table personnel
     nom               varchar(30) not null
 );
 
-alter table personnel
-    owner to yannickdriever;
 
 create table commande
 (
@@ -135,8 +121,6 @@ create table commande
             references point_de_vente
 );
 
-alter table commande
-    owner to yannickdriever;
 
 create table adresse
 (
@@ -156,8 +140,6 @@ create table adresse
             references client
 );
 
-alter table adresse
-    owner to yannickdriever;
 
 create table livraison
 (
@@ -176,8 +158,6 @@ create table livraison
             references facture
 );
 
-alter table livraison
-    owner to yannickdriever;
 
 create table ligne_de_commande
 (
@@ -194,8 +174,6 @@ create table ligne_de_commande
         primary key (commande_numero, produit_id)
 );
 
-alter table ligne_de_commande
-    owner to yannickdriever;
 
 create table composition
 (
@@ -209,8 +187,3 @@ create table composition
             references produit,
     quantite      smallint not null
 );
-
-alter table composition
-    owner to yannickdriever;
-
-
