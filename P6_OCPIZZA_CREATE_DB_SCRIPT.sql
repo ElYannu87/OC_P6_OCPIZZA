@@ -51,9 +51,9 @@ create table point_de_vente
 );
 
 
-create table stock
+create table ingredient
 (
-    stock_id          smallint      not null
+    ingredient_id     smallint      not null
         constraint stock_pk
             primary key,
     categorie         varchar(30)   not null,
@@ -69,7 +69,7 @@ create table stock
 
 create table produit
 (
-    pizza_id         smallint      not null
+    produit_id       smallint      not null
         constraint produit_pk
             primary key,
     categorie        varchar(30)   not null,
@@ -79,7 +79,7 @@ create table produit
     taux_tva_100     numeric(3, 1) not null,
     stock_id         smallint      not null
         constraint stock_produit_fk
-            references stock
+            references ingredient
 );
 
 
@@ -94,8 +94,7 @@ create table personnel
             references point_de_vente,
     utilisateur_id    smallint    not null
         constraint utilisateur_personnel_fk
-            references utilisateur,
-    nom               varchar(30) not null
+            references utilisateur
 );
 
 
@@ -130,7 +129,7 @@ create table adresse
     nom_client      varchar(30) not null,
     numero_voie     smallint    not null,
     voie            varchar(50) not null,
-    code_postal     integer     not null,
+    code_postal     varchar(5)  not null,
     ville           varchar(50) not null,
     commande_numero integer     not null
         constraint commande_adresse_fk
@@ -179,10 +178,8 @@ create table composition
 (
     ingredient_id smallint not null
         constraint composition_stock_stock_id_fk
-            references stock,
-    pizza_id      smallint not null
-        constraint composition_pk
-            primary key
+            references ingredient,
+    produit_id    smallint not null
         constraint composition_pizza_pizza_id_fk
             references produit,
     quantite      smallint not null
